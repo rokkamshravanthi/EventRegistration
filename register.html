@@ -92,19 +92,38 @@
   </div>
 
   <script>
-    function register() {
-      const name  = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const org   = document.getElementById('org').value.trim();
-      const event = document.getElementById('event').value;
+// Replace your register() function with this:
+function register() {
+  const name  = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const org   = document.getElementById('org').value.trim();
+  const event = document.getElementById('event').value;
 
-      if (!name || !email || !phone || !org || !event) {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerText = '⚠️ Please fill in all fields!';
-        return;
-      }
+  // Phone validation - must be 10 digits
+  const phoneRegex = /^[0-9]{10}$/;
 
+  if (!name || !email || !phone || !org || !event) {
+    showMessage('⚠️ Please fill in all fields!', 'red');
+    return;
+  }
+  if (!phoneRegex.test(phone)) {
+    showMessage('⚠️ Enter valid 10-digit phone number!', 'red');
+    return;
+  }
+  if (!email.includes('@')) {
+    showMessage('⚠️ Enter a valid email address!', 'red');
+    return;
+  }
+
+  showMessage(`✅ ${name} registered for ${event} successfully!`, 'green');
+}
+
+function showMessage(msg, color) {
+  const el = document.getElementById('message');
+  el.style.color = color;
+  el.innerText = msg;
+}
       document.getElementById('message').style.color = 'green';
       document.getElementById('message').innerText =
         `✅ ${name} registered successfully for ${event}!`;
