@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #45a049; }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>🎟️ Event Registration</h2>
+
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Enter your full name">
+
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label>Phone Number</label>
+    <input type="tel" id="phone" placeholder="Enter your phone number">
+
+    <label>College / Organization</label>
+    <input type="text" id="org" placeholder="Enter your college or org">
+
+    <label>Event</label>
+    <select id="event">
+      <option value="">-- Select Event --</option>
+      <option value="hackathon">Hackathon</option>
+      <option value="workshop">Workshop</option>
+      <option value="seminar">Seminar</option>
+    </select>
+
+    <button onclick="register()">Register</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function register() {
+      const name  = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const org   = document.getElementById('org').value.trim();
+      const event = document.getElementById('event').value;
+
+      if (!name || !email || !phone || !org || !event) {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerText = '⚠️ Please fill in all fields!';
+        return;
+      }
+
+      document.getElementById('message').style.color = 'green';
+      document.getElementById('message').innerText =
+        `✅ ${name} registered successfully for ${event}!`;
+    }
+  </script>
+</body>
+</html>
